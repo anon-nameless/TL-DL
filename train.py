@@ -108,12 +108,12 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     batch_size = 1
 
-    train_root = r"D:\global landslides\CAS mini\train"  #
-    val_root = r"D:\global landslides\CAS mini\train"  #
+    train_root = "the path to CAS" 
+    val_root = "the path to a dataset" 
     model_name = "AMGUnet"
     optim_params = dict(lr=0.01, momentum=0.9, weight_decay=0.001)
     epoch_set = 2
-    resume = r"D:\global landslides\results\AMGUnet_model_CAS.pth"  # "save_weights/best_unet_model.pth"
+    resume = None
     save_best = True
 
     if not os.path.exists("save_weights"):
@@ -129,5 +129,4 @@ if __name__ == "__main__":
         if os.name == "posix":
             result_zip = f"result_{datetime.datetime.now().strftime('%Y%m%d')}.zip"
             os.system(f"zip -q -r {result_zip} save_weights")
-            os.system(f"oss cp {result_zip} oss://")
-            os.system("shutdown")
+
